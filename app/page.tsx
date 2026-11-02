@@ -70,7 +70,7 @@ export default function Home() {
                   aria-label={`${course.title} 상세 보기`}
                 >
                   <ImagePlaceholder
-                    label={`강좌 ${course.id} 대표 이미지 · 이미지 직접 추가`}
+                    label={`강좌 ${course.id} 대표 이미지 · TODO`}
                     className="aspect-[1.55/1] w-full transition-opacity group-hover:opacity-80"
                   />
                 </Link>

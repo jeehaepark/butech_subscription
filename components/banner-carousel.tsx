@@ -62,7 +62,7 @@ export function BannerCarousel() {
               className="min-w-0 shrink-0 grow-0 basis-[88%] pl-4 sm:basis-[72%] lg:basis-[49%]"
             >
               <div className="flex aspect-[2.5/1] w-full items-center justify-center border border-dashed border-[#c9cdd3] bg-[#f3f4f5] px-4 text-center text-sm font-medium text-[#8a9099]">
-                {banner.label} · 이미지를 직접 추가하세요
+                {banner.label}
               </div>
             </div>
           ))}
