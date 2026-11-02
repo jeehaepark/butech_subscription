@@ -11,38 +11,15 @@ const banners = [
 export function BannerCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef(0);
+  const scrollEndTimerRef = useRef<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const goTo = useCallback((index: number) => {
+  const getNearestIndex = useCallback(() => {
     const track = trackRef.current;
-    const slide = track?.children[index] as HTMLElement | undefined;
-    if (!track || !slide) return;
+    if (!track) return activeRef.current;
 
-    const trackRect = track.getBoundingClientRect();
-    const slideRect = slide.getBoundingClientRect();
-    const trackCenter = trackRect.left + track.clientWidth / 2;
-    const slideCenter = slideRect.left + slideRect.width / 2;
-    const targetLeft = track.scrollLeft + slideCenter - trackCenter;
-
-    activeRef.current = index;
-    setActiveIndex(index);
-    track.scrollTo({ left: targetLeft, behavior: "smooth" });
-  }, []);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      goTo((activeRef.current + 1) % banners.length);
-    }, 5000);
-
-    return () => window.clearInterval(timer);
-  }, [goTo]);
-
-  const handleScroll = () => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const trackRect = track.getBoundingClientRect();
-    const trackCenter = trackRect.left + track.clientWidth / 2;
+    const trackCenter =
+      track.getBoundingClientRect().left + track.clientWidth / 2;
     const slides = Array.from(track.children) as HTMLElement[];
 
     let nearestIndex = 0;
@@ -57,8 +34,56 @@ export function BannerCarousel() {
       }
     });
 
-    activeRef.current = nearestIndex;
-    setActiveIndex(nearestIndex);
+    return nearestIndex;
+  }, []);
+
+  const goTo = useCallback((index: number) => {
+    const track = trackRef.current;
+    const slide = track?.children[index] as HTMLElement | undefined;
+    if (!track || !slide) return;
+
+    if (scrollEndTimerRef.current !== null) {
+      window.clearTimeout(scrollEndTimerRef.current);
+      scrollEndTimerRef.current = null;
+    }
+
+    activeRef.current = index;
+    setActiveIndex(index);
+
+    const trackCenter =
+      track.getBoundingClientRect().left + track.clientWidth / 2;
+    const slideCenter =
+      slide.getBoundingClientRect().left + slide.getBoundingClientRect().width / 2;
+    const targetLeft = track.scrollLeft + slideCenter - trackCenter;
+
+    track.scrollTo({ left: targetLeft, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      goTo((activeRef.current + 1) % banners.length);
+    }, 5000);
+
+    return () => {
+      window.clearInterval(timer);
+      if (scrollEndTimerRef.current !== null) {
+        window.clearTimeout(scrollEndTimerRef.current);
+      }
+    };
+  }, [goTo]);
+
+  const handleScroll = () => {
+    if (scrollEndTimerRef.current !== null) {
+      window.clearTimeout(scrollEndTimerRef.current);
+    }
+
+    // 스크롤 애니메이션이 끝난 뒤 한 번만 활성 점을 동기화한다.
+    scrollEndTimerRef.current = window.setTimeout(() => {
+      const nearestIndex = getNearestIndex();
+      activeRef.current = nearestIndex;
+      setActiveIndex(nearestIndex);
+      scrollEndTimerRef.current = null;
+    }, 160);
   };
 
   return (
@@ -92,7 +117,7 @@ export function BannerCarousel() {
             className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-transparent p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#0784d1]"
           >
             <span
-              className={`block h-2.5 w-2.5 rounded-full transition-colors ${
+              className={`block h-2.5 w-2.5 rounded-full transition-colors duration-200 ${
                 activeIndex === index ? "bg-[#0784d1]" : "bg-[#d5d5d5]"
               }`}
             />
