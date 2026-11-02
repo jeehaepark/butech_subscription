@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 
 import { useEffect, useState } from "react";
 import { businessInfo } from "@/config/business";
@@ -201,32 +200,29 @@ export function SiteFooter() {
   return (
     <>
       <footer className="border-t border-[#e2e8f0] bg-[#f8fafc] text-slate-500">
-        <div className="mx-auto grid w-[calc(100%-48px)] max-w-[1248px] gap-5 py-7 md:grid-cols-[1fr_auto_auto] md:items-center">
-          <a href="/" aria-label="부테크클래스 홈" className="flex items-center">
-            <Image src="/images/butech_logo.png" alt="부테크클래스" width={160} height={43} className="h-9 w-auto object-contain" />
-          </a>
-
-          <div className="text-[10px] leading-[1.9] md:text-right">
-            <p>
-              상호명 {businessInfo.name}　 대표 {businessInfo.representative}　 사업자등록번호 {businessInfo.businessNumber}
+        <div className="mx-auto flex w-[calc(100%-48px)] max-w-[1248px] flex-col gap-6 py-8 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0 text-[11px] leading-[1.9] text-[#8a9bb3] sm:text-[12px]">
+            <p className="flex flex-wrap gap-x-6">
+              <span>상호명 {businessInfo.name}</span>
+              <span>대표 {businessInfo.representative}</span>
+              <span>사업자등록번호 {businessInfo.businessNumber}</span>
             </p>
-            <p>{businessInfo.address}</p>
-            <p>
-              고객센터: {businessInfo.customerService}　 개인정보보호정책 책임자: {businessInfo.privacyOfficer}
+            <p className="flex flex-wrap gap-x-6">
+              <span>{businessInfo.address}</span>
+              <span>고객센터: {businessInfo.customerService}</span>
             </p>
-            <p>
-              Contact: <a className="hover:text-sky-700" href="mailto:butech8@naver.com">butech8@naver.com</a>
-            </p>
-            <p>
-              대표자 이메일: <a className="hover:text-sky-700" href="mailto:butechclass@gmail.com">butechclass@gmail.com</a>
+            <p>개인정보보호정책 책임자: {businessInfo.privacyOfficer}</p>
+            <p className="flex flex-wrap gap-x-6">
+              <span>Contact: <a className="hover:text-sky-700" href="mailto:butech8@naver.com">butech8@naver.com</a></span>
+              <span>대표자 이메일: <a className="hover:text-sky-700" href="mailto:butechclass@gmail.com">butechclass@gmail.com</a></span>
             </p>
           </div>
 
-          <nav className="flex gap-4 text-[11px] text-slate-600 md:flex-col md:text-right">
+          <nav className="flex shrink-0 flex-wrap gap-x-10 gap-y-3 text-[12px] font-medium text-[#465873] sm:justify-end">
             <button
               type="button"
               onClick={() => setTermsOpen(true)}
-              className="cursor-pointer text-left hover:text-sky-700 md:text-right"
+              className="cursor-pointer text-left hover:text-sky-700"
             >
               이용약관
             </button>
@@ -234,7 +230,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="border-t border-[#e2e8f0] py-4 text-center text-[10px]">
+        <div className="border-t border-[#e2e8f0] py-4 text-center text-[10px] text-[#9aa8ba]">
           © 2026 부테크ㅣ부자의 재테크 All rights reserved.　 모든 컨텐츠의 무단복제 및 사용을 금지합니다.
         </div>
       </footer>
