@@ -129,7 +129,7 @@ export function PrivacyPolicyModal() {
 
       {open && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/55 p-3 sm:p-6"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/55 p-3 text-left sm:p-6"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setOpen(false);
           }}
