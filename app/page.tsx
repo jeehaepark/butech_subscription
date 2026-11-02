@@ -1,12 +1,7 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-
-const bannerSlots = [
-  { id: "01", label: "메인 배너 이미지 01" },
-  { id: "02", label: "메인 배너 이미지 02" },
-  { id: "03", label: "메인 배너 이미지 03" },
-];
+import { BannerCarousel } from "@/components/banner-carousel";
 
 const courses = [
   {
@@ -45,28 +40,8 @@ export default function Home() {
     <main className="min-h-screen bg-white text-[#333333]">
       <SiteHeader />
 
-      {/* Main promotional banner carousel image slots */}
-      <section className="overflow-hidden bg-white pb-3 pt-6 sm:pt-8">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {bannerSlots.map((banner) => (
-            <div key={banner.id} className="w-[88vw] shrink-0 snap-center sm:w-[72vw] lg:w-[calc(49vw-12px)]">
-              <ImagePlaceholder
-                label={`${banner.label} · 권장 비율 약 2.5:1`}
-                className="aspect-[2.5/1] w-full"
-              />
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 flex justify-center gap-3" aria-label="배너 페이지 표시">
-          {bannerSlots.map((banner, index) => (
-            <span
-              key={banner.id}
-              className={`h-2.5 w-2.5 rounded-full ${index === 0 ? "bg-[#0784d1]" : "border border-[#c9c9c9] bg-white"}`}
-            />
-          ))}
-        </div>
-      </section>
-
+      {/* Main promotional banner carousel */}
+      <BannerCarousel />
       <div className="mt-3 h-14 bg-[#f7f7f7]" />
 
       {/* Course list */}
