@@ -226,6 +226,7 @@ export function SiteFooter() {
                 <PrivacyPolicyModal />
               </nav>
 
+
               <div className="text-[11px] leading-[1.9] text-[#8a9bb3] sm:text-[12px]">
                 <p className="flex flex-wrap gap-x-6">
                   <span>상호명 {businessInfo.name}</span>
