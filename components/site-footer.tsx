@@ -1,0 +1,5 @@
+import { businessInfo } from "@/config/business";
+
+export function SiteFooter() {
+  return <footer className="border-t border-[#e2e8f0] bg-[#f8fafc] text-slate-400"><div className="mx-auto grid w-[calc(100%-48px)] max-w-[1248px] gap-5 py-7 md:grid-cols-[1fr_auto_auto] md:items-center"><a href="/" className="text-[13px] font-bold text-[#122c4d]"><span className="text-sky-600">▰부자</span>의재테크</a><div className="text-[10px] leading-[1.8] md:text-right"><p>상호명 {businessInfo.name}　 대표 {businessInfo.representative}　 사업자등록번호 {businessInfo.businessNumber}</p><p>{businessInfo.address}</p><p>고객센터: {businessInfo.customerService}　 개인정보보호정책 책임자: {businessInfo.privacyOfficer}</p></div><nav className="flex gap-4 text-[11px] text-slate-600 md:flex-col md:text-right"><a href="/terms">이용약관</a><a href="/privacy">개인정보처리방침</a></nav></div><div className="border-t border-[#e2e8f0] py-4 text-center text-[10px]">© 2026 부테크ㅣ부자의 재테크 All rights reserved.　 모든 컨텐츠의 무단복제 및 사용을 금지합니다.</div></footer>;
+}
