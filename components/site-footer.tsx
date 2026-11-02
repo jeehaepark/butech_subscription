@@ -1,3 +1,4 @@
+import Image from "next/image";
 "use client";
 
 import { useEffect, useState } from "react";
@@ -200,8 +201,8 @@ export function SiteFooter() {
     <>
       <footer className="border-t border-[#e2e8f0] bg-[#f8fafc] text-slate-500">
         <div className="mx-auto grid w-[calc(100%-48px)] max-w-[1248px] gap-5 py-7 md:grid-cols-[1fr_auto_auto] md:items-center">
-          <a href="/" className="text-[13px] font-bold text-[#122c4d]">
-            <span className="text-sky-600">▰부자</span>의재테크
+          <a href="/" aria-label="부테크클래스 홈" className="flex items-center">
+            <Image src="/images/butech_logo.png" alt="부테크클래스" width={160} height={43} className="h-9 w-auto object-contain" />
           </a>
 
           <div className="text-[10px] leading-[1.9] md:text-right">
