@@ -18,22 +18,20 @@ export function BannerCarousel() {
     const slide = track?.children[index] as HTMLElement | undefined;
     if (!track || !slide) return;
 
-    activeRef.current = index;
-    setActiveIndex(index);
-
-    // Calculate the target from rendered positions rather than offsetLeft,
-    // which can be relative to a different offset parent.
     const trackRect = track.getBoundingClientRect();
     const slideRect = slide.getBoundingClientRect();
-    const targetLeft = track.scrollLeft + slideRect.left - trackRect.left;
+    const trackCenter = trackRect.left + track.clientWidth / 2;
+    const slideCenter = slideRect.left + slideRect.width / 2;
+    const targetLeft = track.scrollLeft + slideCenter - trackCenter;
 
+    activeRef.current = index;
+    setActiveIndex(index);
     track.scrollTo({ left: targetLeft, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      const next = (activeRef.current + 1) % banners.length;
-      goTo(next);
+      goTo((activeRef.current + 1) % banners.length);
     }, 5000);
 
     return () => window.clearInterval(timer);
@@ -52,8 +50,7 @@ export function BannerCarousel() {
 
     slides.forEach((slide, index) => {
       const rect = slide.getBoundingClientRect();
-      const center = rect.left + rect.width / 2;
-      const distance = Math.abs(center - trackCenter);
+      const distance = Math.abs(rect.left + rect.width / 2 - trackCenter);
       if (distance < nearestDistance) {
         nearestDistance = distance;
         nearestIndex = index;
@@ -65,7 +62,7 @@ export function BannerCarousel() {
   };
 
   return (
-    <section className="overflow-hidden bg-white pb-3 pt-6 sm:pt-8">
+    <section className="relative z-10 overflow-hidden bg-white pb-3 pt-6 sm:pt-8">
       <div
         ref={trackRef}
         onScroll={handleScroll}
@@ -84,7 +81,7 @@ export function BannerCarousel() {
         ))}
       </div>
 
-      <div className="mt-4 flex justify-center gap-3" aria-label="배너 선택">
+      <div className="relative z-20 mt-3 flex justify-center gap-2" aria-label="배너 선택">
         {banners.map((banner, index) => (
           <button
             key={banner.id}
@@ -92,10 +89,14 @@ export function BannerCarousel() {
             onClick={() => goTo(index)}
             aria-label={`${index + 1}번 배너 보기`}
             aria-pressed={activeIndex === index}
-            className={`h-2.5 w-2.5 cursor-pointer rounded-full border-0 p-0 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0784d1] ${
-              activeIndex === index ? "bg-[#0784d1]" : "bg-[#d5d5d5]"
-            }`}
-          />
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-transparent p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#0784d1]"
+          >
+            <span
+              className={`block h-2.5 w-2.5 rounded-full transition-colors ${
+                activeIndex === index ? "bg-[#0784d1]" : "bg-[#d5d5d5]"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>
