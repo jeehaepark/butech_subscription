@@ -1,0 +1,3 @@
+export function SiteHeader() {
+  return <header className="h-[68px] border-b border-[#e2e8f0] bg-white"><div className="mx-auto flex h-full w-[calc(100%-48px)] max-w-[1248px] items-center justify-between"><a href="/" className="text-[13px] font-bold tracking-tight text-[#122c4d]"><span className="text-sky-600">▰부자</span>의재테크</a><nav className="flex items-center gap-5 text-[13px] text-[#122c4d]"><a href="/login">로그인</a><a href="/signup" className="flex h-9 items-center rounded border border-[#122c4d] px-4 font-bold">회원가입</a></nav></div></header>;
+}
