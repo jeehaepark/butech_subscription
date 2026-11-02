@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 
 import { useEffect, useState } from "react";
 import { businessInfo } from "@/config/business";
@@ -200,38 +202,53 @@ export function SiteFooter() {
   return (
     <>
       <footer className="border-t border-[#e2e8f0] bg-[#f8fafc] text-slate-500">
-        <div className="mx-auto flex w-[calc(100%-48px)] max-w-[1248px] flex-col gap-6 py-8 sm:flex-row sm:items-start sm:justify-between">
-          <div className="min-w-0 text-[11px] leading-[1.9] text-[#8a9bb3] sm:text-[12px]">
-            <p className="flex flex-wrap gap-x-6">
-              <span>상호명 {businessInfo.name}</span>
-              <span>대표 {businessInfo.representative}</span>
-              <span>사업자등록번호 {businessInfo.businessNumber}</span>
-            </p>
-            <p className="flex flex-wrap gap-x-6">
-              <span>{businessInfo.address}</span>
-              <span>고객센터: {businessInfo.customerService}</span>
-            </p>
-            <p>개인정보보호정책 책임자: {businessInfo.privacyOfficer}</p>
-            <p className="flex flex-wrap gap-x-6">
-              <span>Contact: <a className="hover:text-sky-700" href="mailto:butech8@naver.com">butech8@naver.com</a></span>
-              <span>대표자 이메일: <a className="hover:text-sky-700" href="mailto:butechclass@gmail.com">butechclass@gmail.com</a></span>
-            </p>
+        <div className="mx-auto w-[calc(100%-48px)] max-w-[1248px] py-8">
+          <div className="grid gap-7 sm:grid-cols-[minmax(220px,1fr)_minmax(0,2fr)] sm:gap-10">
+            <a href="/" aria-label="부테크클래스 홈" className="flex items-start">
+              <Image
+                src="/images/butech_logo.png"
+                alt="부테크클래스"
+                width={180}
+                height={48}
+                className="h-6 w-auto object-contain"
+              />
+            </a>
+
+            <div className="min-w-0">
+              <nav className="mb-5 flex flex-wrap gap-x-10 gap-y-3 text-[12px] font-medium text-[#465873] sm:justify-end">
+                <button
+                  type="button"
+                  onClick={() => setTermsOpen(true)}
+                  className="cursor-pointer text-left hover:text-sky-700"
+                >
+                  이용약관
+                </button>
+                <PrivacyPolicyModal />
+              </nav>
+
+              <div className="text-[11px] leading-[1.9] text-[#8a9bb3] sm:text-[12px]">
+                <p className="flex flex-wrap gap-x-6">
+                  <span>상호명 {businessInfo.name}</span>
+                  <span>대표 {businessInfo.representative}</span>
+                  <span>사업자등록번호 {businessInfo.businessNumber}</span>
+                </p>
+                <p className="flex flex-wrap gap-x-6">
+                  <span>{businessInfo.address}</span>
+                  <span>고객센터: {businessInfo.customerService}</span>
+                </p>
+                <p>개인정보보호정책 책임자: {businessInfo.privacyOfficer}</p>
+                <p className="flex flex-wrap gap-x-6">
+                  <span>Contact: <a className="hover:text-sky-700" href="mailto:butech8@naver.com">butech8@naver.com</a></span>
+                  <span>대표자 이메일: <a className="hover:text-sky-700" href="mailto:butechclass@gmail.com">butechclass@gmail.com</a></span>
+                </p>
+              </div>
+            </div>
           </div>
 
-          <nav className="flex shrink-0 flex-wrap gap-x-10 gap-y-3 text-[12px] font-medium text-[#465873] sm:justify-end">
-            <button
-              type="button"
-              onClick={() => setTermsOpen(true)}
-              className="cursor-pointer text-left hover:text-sky-700"
-            >
-              이용약관
-            </button>
-            <PrivacyPolicyModal />
-          </nav>
-        </div>
-
-        <div className="border-t border-[#e2e8f0] py-4 text-center text-[10px] text-[#9aa8ba]">
-          © 2026 부테크ㅣ부자의 재테크 All rights reserved.　 모든 컨텐츠의 무단복제 및 사용을 금지합니다.
+          <div className="mt-12 flex flex-col gap-2 border-t border-[#e2e8f0] pt-5 text-[10px] text-[#9aa8ba] sm:flex-row sm:items-center sm:justify-between">
+            <span>© 2026 부테크ㅣ부자의 재테크 All rights reserved.</span>
+            <span>모든 컨텐츠의 무단복제 및 사용을 금지합니다.</span>
+          </div>
         </div>
       </footer>
 
