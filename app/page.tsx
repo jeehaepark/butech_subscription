@@ -2,6 +2,12 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
+const bannerSlots = [
+  { id: "01", label: "메인 배너 이미지 01" },
+  { id: "02", label: "메인 배너 이미지 02" },
+  { id: "03", label: "메인 배너 이미지 03" },
+];
+
 const courses = [
   {
     id: "01",
@@ -9,8 +15,6 @@ const courses = [
     description: "8주만에 실전 투자자로 거듭나는 실전 투자 스터디",
     period: "2026.10.15 ~ 2027.01.16",
     tags: ["교재미포함", "8주 속성과정", "선착순모집"],
-    artwork: "from-[#260b3d] via-[#35104d] to-[#10152e]",
-    accent: "INVESTMENT STUDY",
   },
   {
     id: "02",
@@ -18,8 +22,6 @@ const courses = [
     description: "아는 사람만 계속 가져가는 시장, NPL 무제한관리 특별혜택",
     period: "단기 속성 과정",
     tags: ["교재포함", "오프라인 수업 2회 + A/S 줌 수업 1회 + A/S 오프라인 1회", "선착순모집"],
-    artwork: "from-[#111c36] via-[#18243e] to-[#101321]",
-    accent: "NPL INVEST CLASS",
   },
   {
     id: "03",
@@ -27,15 +29,47 @@ const courses = [
     description: "부업이 아닌 부업 에어비앤비로 월급 만들기",
     period: "2026.7.25 ~ 10.24",
     tags: ["교재포함", "5주 정규 수업 + 12주 케어", "선착순모집"],
-    artwork: "from-[#ff7a27] via-[#ff9b52] to-[#ffe0c4]",
-    accent: "AIRBNB CLASS",
   },
 ];
+
+function ImagePlaceholder({ label, className = "" }: { label: string; className?: string }) {
+  return (
+    <div className={`flex items-center justify-center border border-dashed border-[#c9cdd3] bg-[#f3f4f5] text-center text-sm font-medium text-[#8a9099] ${className}`}>
+      <span>{label}</span>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-[#333333]">
       <SiteHeader />
+
+      {/* Main promotional banner carousel image slots */}
+      <section className="overflow-hidden bg-white pb-3 pt-6 sm:pt-8">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {bannerSlots.map((banner) => (
+            <div key={banner.id} className="w-[88vw] shrink-0 snap-center sm:w-[72vw] lg:w-[calc(49vw-12px)]">
+              <ImagePlaceholder
+                label={`${banner.label} · 권장 비율 약 2.5:1`}
+                className="aspect-[2.5/1] w-full"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 flex justify-center gap-3" aria-label="배너 페이지 표시">
+          {bannerSlots.map((banner, index) => (
+            <span
+              key={banner.id}
+              className={`h-2.5 w-2.5 rounded-full ${index === 0 ? "bg-[#0784d1]" : "border border-[#c9c9c9] bg-white"}`}
+            />
+          ))}
+        </div>
+      </section>
+
+      <div className="mt-3 h-14 bg-[#f7f7f7]" />
+
+      {/* Course list */}
       <section className="py-14 sm:py-16">
         <div className="mx-auto w-[calc(100%-48px)] max-w-[1312px]">
           <div className="mb-6">
@@ -60,24 +94,14 @@ export default function Home() {
                   className="group block"
                   aria-label={`${course.title} 상세 보기`}
                 >
-                  <div className={`relative flex aspect-[1.55/1] items-center overflow-hidden rounded-sm bg-gradient-to-br ${course.artwork} p-6 text-white transition-opacity group-hover:opacity-90 sm:p-7`}>
-                    <span className="pointer-events-none absolute -right-5 -top-8 text-[100px] font-black tracking-tighter text-white/[0.08] sm:text-[130px]">
-                      {course.id}
-                    </span>
-                    <div className="relative z-10 max-w-[82%]">
-                      <span className="mb-4 inline-block rounded border border-white/50 px-2 py-1 text-[10px] font-semibold tracking-wide text-white/90 sm:text-xs">
-                        {course.accent}
-                      </span>
-                      <h2 className="text-[23px] font-extrabold leading-[1.22] tracking-[-1px] sm:text-[27px]">
-                        {course.title}
-                      </h2>
-                    </div>
-                  </div>
+                  <ImagePlaceholder
+                    label={`강좌 ${course.id} 대표 이미지 · 이미지 직접 추가`}
+                    className="aspect-[1.55/1] w-full transition-opacity group-hover:opacity-80"
+                  />
                 </Link>
-
-                <h3 className="mt-5 min-h-[28px] text-[16px] font-extrabold leading-7 tracking-[-.4px] sm:text-[17px]">
+                <h2 className="mt-5 min-h-[28px] text-[16px] font-extrabold leading-7 tracking-[-.4px] sm:text-[17px]">
                   {course.title}
-                </h3>
+                </h2>
                 <div className="mt-2 rounded-[15px] border border-[#e9e9e9] bg-white px-5 py-5 sm:px-6 sm:py-6">
                   <p className="min-h-[56px] text-[15px] leading-7 text-[#555] sm:text-[16px]">
                     {course.description}
