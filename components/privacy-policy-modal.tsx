@@ -122,7 +122,7 @@ export function PrivacyPolicyModal() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="w-full cursor-pointer text-left hover:text-sky-700 md:text-left"
+        className="inline-block w-auto shrink-0 cursor-pointer whitespace-nowrap text-left hover:text-sky-700"
       >
         개인정보처리방침
       </button>
