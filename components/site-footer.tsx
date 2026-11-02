@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { businessInfo } from "@/config/business";
+import { PrivacyPolicyModal } from "@/components/privacy-policy-modal";
 
 const termsSections = [
   {
@@ -227,9 +228,7 @@ export function SiteFooter() {
             >
               이용약관
             </button>
-            <a href="/privacy" className="hover:text-sky-700">
-              개인정보처리방침
-            </a>
+            <PrivacyPolicyModal />
           </nav>
         </div>
 
