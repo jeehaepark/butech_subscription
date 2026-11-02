@@ -3,18 +3,109 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 const courses = [
-  { id: "01", name: "[강좌명을 입력하세요]", price: "39,000원", word: "INVEST", color: "from-[#0f2c54] to-[#1a4a8a]" },
-  { id: "02", name: "[강좌명을 입력하세요]", price: "69,000원", word: "PROFIT", color: "from-emerald-950 to-emerald-700" },
-  { id: "03", name: "[강좌명을 입력하세요]", price: "99,000원", word: "ASSETS", color: "from-orange-950 to-orange-700" },
-  { id: "04", name: "[강좌명을 입력하세요]", price: "149,000원", word: "MARKET", color: "from-indigo-950 to-indigo-700" },
-  { id: "05", name: "[강좌명을 입력하세요]", price: "199,000원", word: "MASTER", color: "from-slate-950 to-blue-950", pro: true },
+  {
+    id: "01",
+    title: "[파이팅팔콘] 실전 투자 스터디 3기",
+    description: "8주만에 실전 투자자로 거듭나는 실전 투자 스터디",
+    period: "2026.10.15 ~ 2027.01.16",
+    tags: ["교재미포함", "8주 속성과정", "선착순모집"],
+    artwork: "from-[#260b3d] via-[#35104d] to-[#10152e]",
+    accent: "INVESTMENT STUDY",
+  },
+  {
+    id: "02",
+    title: "[파이팅팔콘] NPL투자 단기속성 클래스",
+    description: "아는 사람만 계속 가져가는 시장, NPL 무제한관리 특별혜택",
+    period: "단기 속성 과정",
+    tags: ["교재포함", "오프라인 수업 2회 + A/S 줌 수업 1회 + A/S 오프라인 1회", "선착순모집"],
+    artwork: "from-[#111c36] via-[#18243e] to-[#101321]",
+    accent: "NPL INVEST CLASS",
+  },
+  {
+    id: "03",
+    title: "[해부자] 침대에서 월급버는 에어비앤비 2기",
+    description: "부업이 아닌 부업 에어비앤비로 월급 만들기",
+    period: "2026.7.25 ~ 10.24",
+    tags: ["교재포함", "5주 정규 수업 + 12주 케어", "선착순모집"],
+    artwork: "from-[#ff7a27] via-[#ff9b52] to-[#ffe0c4]",
+    accent: "AIRBNB CLASS",
+  },
 ];
 
 export default function Home() {
-  return <main className="min-h-screen bg-[#f7f8fa] text-[#0f1f35]">
-    <SiteHeader />
-    <section className="bg-white"><div className="mx-auto grid min-h-[460px] w-[calc(100%-48px)] max-w-[1248px] items-center gap-10 py-12 lg:grid-cols-[1fr_544px] lg:py-0"><div><h1 className="mb-2 text-[34px] font-extrabold leading-[1.2] tracking-[-1.7px] sm:text-[42px]">수익형 부동산,<br/>원하는 강좌만<br/>골라서 수강하세요.</h1><p className="max-w-[540px] text-[13px] leading-[1.65] text-[#596678] sm:text-[15px]">원하는 강좌를 선택해 월 단위로 구독하세요. 각 구독은 선택한 강좌에만 적용됩니다.</p></div><div className="flex h-[240px] items-center justify-center rounded-lg border border-dashed border-[#ccd1d9] bg-[#f4f5f6] text-sm text-[#808a99] lg:h-[340px]">IMAGE PLACEHOLDER</div></div></section>
-    <section className="py-[52px] pb-[60px]"><div className="mx-auto w-[calc(100%-48px)] max-w-[1248px]"><div className="mb-8"><span className="mb-2 block text-[10px] font-extrabold text-blue-600">개별 강좌 구독</span><h2 className="mb-2 text-2xl font-bold sm:text-[28px]">수강할 강좌를 선택하세요</h2><p className="text-sm text-slate-500">각 강좌는 독립된 월 구독 상품입니다. 원하는 강좌만 골라 바로 구독하세요.</p></div><div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 xl:grid-cols-3">{courses.map(course=><article key={course.id} className="overflow-hidden rounded-[10px] border border-[#e2e8f0] bg-white shadow-[0_2px_10px_rgba(0,0,0,.07)]"><div className={`relative flex h-[170px] items-center justify-center overflow-hidden bg-gradient-to-br ${course.color}`}><span className="text-[48px] font-black text-white/[0.08]">{course.word}</span><span className="absolute left-3 top-3 rounded border border-white/30 bg-white/15 px-2.5 py-1 text-[10px] font-bold text-white">COURSE {course.id}</span>{course.pro&&<span className="absolute left-3 top-10 rounded bg-amber-400 px-2 py-0.5 text-[9px] font-bold">PRO</span>}<span className="absolute right-3 top-3 rounded bg-amber-400 px-3 py-1.5 text-[11px] font-bold text-slate-900">월 {course.price}</span><span className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-transparent to-black/50 px-4 py-3 text-sm font-bold text-white">{course.name}</span></div><div className="space-y-3 p-4"><div><p className="text-[11px] text-slate-400">[분야 / 난이도]</p><h3 className="mt-1 text-[15px] font-bold">강좌 {course.id} — {course.name}</h3><p className="mt-1 text-xs text-slate-500">강사: [강사명]</p><p className="mt-1 text-xs text-slate-600">[강좌 소개 문구를 입력하세요.]</p></div><div className="rounded-lg border border-slate-200 bg-slate-50 p-3.5"><div className="mb-2 flex justify-between text-xs"><strong>강좌 {course.id} · 개별 구독</strong><span className="text-slate-500">이 강좌만 별도 결제</span></div><div className="mb-2 flex items-end justify-between"><span className="text-[11px] text-slate-500">월 구독료</span><strong className="text-[22px]">{course.price}</strong></div><Link href={`/courses/${course.id}`} className="flex h-10 items-center justify-center rounded-md bg-[#1d4ed8] text-[13px] font-bold text-white">강좌 상세 보기</Link></div></div></article>)}</div></div></section>
-    <SiteFooter />
-  </main>;
+  return (
+    <main className="min-h-screen bg-white text-[#333333]">
+      <SiteHeader />
+      <section className="py-14 sm:py-16">
+        <div className="mx-auto w-[calc(100%-48px)] max-w-[1312px]">
+          <div className="mb-6">
+            <span className="mb-3 block text-[16px] font-bold text-[#0879c9]">
+              Expertise&nbsp; 부테크 클래스의 대표 강의 카테고리
+            </span>
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <h1 className="text-[32px] font-extrabold tracking-[-1.5px] sm:text-[40px]">
+                클래스별 맞춤 강좌
+              </h1>
+              <p className="pb-1 text-sm font-semibold text-[#aaa] sm:text-lg">
+                최고의 전문가들이 전수하는 실전 투자 전략을 만나보세요
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {courses.map((course) => (
+              <article key={course.id} className="min-w-0">
+                <Link
+                  href={`/courses/${course.id}`}
+                  className="group block"
+                  aria-label={`${course.title} 상세 보기`}
+                >
+                  <div className={`relative flex aspect-[1.55/1] items-center overflow-hidden rounded-sm bg-gradient-to-br ${course.artwork} p-6 text-white transition-opacity group-hover:opacity-90 sm:p-7`}>
+                    <span className="pointer-events-none absolute -right-5 -top-8 text-[100px] font-black tracking-tighter text-white/[0.08] sm:text-[130px]">
+                      {course.id}
+                    </span>
+                    <div className="relative z-10 max-w-[82%]">
+                      <span className="mb-4 inline-block rounded border border-white/50 px-2 py-1 text-[10px] font-semibold tracking-wide text-white/90 sm:text-xs">
+                        {course.accent}
+                      </span>
+                      <h2 className="text-[23px] font-extrabold leading-[1.22] tracking-[-1px] sm:text-[27px]">
+                        {course.title}
+                      </h2>
+                    </div>
+                  </div>
+                </Link>
+
+                <h3 className="mt-5 min-h-[28px] text-[16px] font-extrabold leading-7 tracking-[-.4px] sm:text-[17px]">
+                  {course.title}
+                </h3>
+                <div className="mt-2 rounded-[15px] border border-[#e9e9e9] bg-white px-5 py-5 sm:px-6 sm:py-6">
+                  <p className="min-h-[56px] text-[15px] leading-7 text-[#555] sm:text-[16px]">
+                    {course.description}
+                    <span className="block">{course.period}</span>
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {course.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-[10px] border border-[#555] px-3 py-2 text-[13px] font-semibold leading-5 text-[#444] sm:px-4 sm:text-[14px]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href={`/courses/${course.id}`}
+                    className="mt-6 flex h-11 items-center justify-center rounded-lg bg-[#222] px-4 text-sm font-bold text-white transition-colors hover:bg-[#0879c9]"
+                  >
+                    강좌 자세히 보기
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <SiteFooter />
+    </main>
+  );
 }
