@@ -42,7 +42,6 @@ export default function Home() {
 
       {/* Main promotional banner carousel */}
       <BannerCarousel />
-      <div className="mt-3 h-14 bg-[#f7f7f7]" />
 
       {/* Course list */}
       <section className="py-14 sm:py-16">
