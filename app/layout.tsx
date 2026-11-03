@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "부테크 | 부자의 재테크",
@@ -10,8 +11,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko">
-      <body>{children}</body>
-      <Analytics/>
+      <body>
+        {children}
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
+      </body>
     </html>
   );
 }
