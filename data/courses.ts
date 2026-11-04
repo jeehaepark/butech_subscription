@@ -6,7 +6,6 @@ export type Course = {
   description: string;
   monthlyPrice: number;
   status: CourseStatus;
-  period: string;
   image: string;
   detailImages: string[];
   tags: string[];
@@ -26,7 +25,6 @@ export const courses: Course[] = [
     description: "8주만에 실전 투자자로 거듭나는 실전 투자 스터디",
     monthlyPrice: 192000,
     status: "recruiting",
-    period: "2026.10.15 ~ 2027.01.16",
     image: "/images/banners/Real_Investment_Study_Cohort_03_banner.png",
     detailImages: [
       "/images/courses/RIS_03/detail-01.png",
@@ -37,10 +35,9 @@ export const courses: Course[] = [
   {
     id: "PAI_2026",
     title: "[파이팅팔콘] 공매투자 단기속성 클래스",
-    description: "아는 사람만 계속 가져가는 시장, NPL 무제한관리 특별혜택",
+    description: "아는 사람만 계속 가져가는 시장, 무제한관리 특별혜택",
     monthlyPrice: 73400,
     status: "recruiting",
-    period: "단기 속성 과정",
     image: "/images/banners/Public_Auction_Investment_banner.png",
     detailImages: [
       "/images/courses/PAI_2026/detail-01.png",
