@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { BannerCarousel } from "@/components/banner-carousel";
-import { courses, courseStatusLabels } from "@/data/courses";
+import { courses } from "@/data/courses";
 
 export default function Home() {
   return (
@@ -39,14 +39,9 @@ export default function Home() {
                     />
                   </div>
                 </Link>
-                <div className="mt-4 flex items-center gap-2">
-                  <span className="rounded bg-[#1d4ed8] px-2 py-1 text-xs font-bold text-white">
-                    {courseStatusLabels[course.status]}
-                  </span>
-                  <h2 className="min-h-[28px] text-[16px] font-extrabold leading-7 tracking-[-.4px] sm:text-[17px]">
-                    {course.title}
-                  </h2>
-                </div>
+                <h2 className="mt-4 min-h-[28px] text-[16px] font-extrabold leading-7 tracking-[-.4px] sm:text-[17px]">
+                  {course.title}
+                </h2>
                 <div className="mt-2 rounded-[15px] border border-[#e9e9e9] bg-white px-5 py-5 sm:px-6 sm:py-6">
                   <p className="min-h-[56px] text-[15px] leading-7 text-[#555] sm:text-[16px]">
                     {course.description}

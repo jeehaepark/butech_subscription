@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { formatPrice, getCourseById, courseStatusLabels } from "@/data/courses";
+import { formatPrice, getCourseById } from "@/data/courses";
 
 function CourseDetailFallback() {
   return (
@@ -47,10 +47,7 @@ async function CourseDetailContent({ params }: { params: Promise<{ id: string }>
             )}
           </div>
           <aside className="rounded-[10px] border border-[#e2e8f0] bg-white p-7">
-            <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-[28px] font-bold text-[#0f1f35]">{course.title}</h1>
-              <span className="rounded bg-[#1d4ed8] px-2 py-1 text-xs font-bold text-white">{courseStatusLabels[course.status]}</span>
-            </div>
+            <h1 className="text-[28px] font-bold text-[#0f1f35]">{course.title}</h1>
             <div className="my-6 h-px bg-[#e2e8f0]" />
             <p className="text-sm leading-[1.8] text-[#64748b]">{course.description}</p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -67,7 +64,7 @@ async function CourseDetailContent({ params }: { params: Promise<{ id: string }>
                 구독하기
               </Link>
             ) : (
-              <div className="mt-6 flex h-[46px] items-center justify-center rounded-md bg-[#e2e8f0] text-sm font-bold text-[#64748b]">{courseStatusLabels[course.status]}</div>
+              <div className="mt-6 flex h-[46px] items-center justify-center rounded-md bg-[#e2e8f0] text-sm font-bold text-[#64748b]">현재 구독할 수 없는 강좌입니다.</div>
             )}
           </aside>
         </div>
