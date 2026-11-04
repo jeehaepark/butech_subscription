@@ -11,12 +11,6 @@ export type Course = {
   tags: string[];
 };
 
-export const courseStatusLabels: Record<CourseStatus, string> = {
-  recruiting: "모집 중",
-  upcoming: "모집 예정",
-  closed: "모집 마감",
-  ongoing: "상시 수강",
-};
 
 export const courses: Course[] = [
   {
