@@ -53,10 +53,9 @@ async function CourseDetailContent({ params }: { params: Promise<{ id: string }>
             </div>
             <div className="my-6 h-px bg-[#e2e8f0]" />
             <p className="text-sm leading-[1.8] text-[#64748b]">{course.description}</p>
-            <p className="mt-1 text-sm text-[#64748b]">{course.period}</p>
             <div className="mt-5 flex flex-wrap gap-2">
               {course.tags.map((tag) => (
-                <span key={tag} className="rounded-[10px] border border-[#555] px-3 py-2 text-[13px] font-semibold leading-5 text-[#444]">{tag}</span>
+                <span key={tag} className="cursor-pointer rounded-[10px] border border-[#555] px-3 py-2 text-[13px] font-semibold leading-5 text-[#444]">{tag}</span>
               ))}
             </div>
             <div className="my-6 h-px bg-[#e2e8f0]" />
