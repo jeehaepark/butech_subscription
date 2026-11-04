@@ -1,69 +1,76 @@
 import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { BannerCarousel } from "@/components/banner-carousel";
+import { courses, courseStatusLabels } from "@/data/courses";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-white text-[#333333]">
+      <SiteHeader />
+      <BannerCarousel />
+      <section className="py-14 sm:py-16">
+        <div className="mx-auto w-[calc(100%-48px)] max-w-[1312px]">
+          <div className="mb-6">
+            <span className="mb-3 block text-[16px] font-bold text-[#0879c9]">
+              Expertise&nbsp; 부테크 클래스의 대표 강의 카테고리
+            </span>
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <h1 className="text-[32px] font-extrabold tracking-[-1.5px] sm:text-[40px]">
+                클래스별 맞춤 강좌
+              </h1>
+              <p className="pb-1 text-sm font-semibold text-[#aaa] sm:text-lg">
+                최고의 전문가들이 전수하는 실전 투자 전략을 만나보세요
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {courses.map((course) => (
+              <article key={course.id} className="min-w-0">
+                <Link href={`/courses/${course.id}`} className="group block" aria-label={`${course.title} 상세 보기`}>
+                  <div className="relative aspect-[1.55/1] w-full overflow-hidden">
+                    <Image
+                      src={course.image}
+                      alt={course.title}
+                      fill
+                      sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-opacity group-hover:opacity-80"
+                    />
+                  </div>
+                </Link>
+                <div className="mt-4 flex items-center gap-2">
+                  <span className="rounded bg-[#1d4ed8] px-2 py-1 text-xs font-bold text-white">
+                    {courseStatusLabels[course.status]}
+                  </span>
+                  <h2 className="min-h-[28px] text-[16px] font-extrabold leading-7 tracking-[-.4px] sm:text-[17px]">
+                    {course.title}
+                  </h2>
+                </div>
+                <div className="mt-2 rounded-[15px] border border-[#e9e9e9] bg-white px-5 py-5 sm:px-6 sm:py-6">
+                  <p className="min-h-[56px] text-[15px] leading-7 text-[#555] sm:text-[16px]">
+                    {course.description}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {course.tags.map((tag) => (
+                      <span key={tag} className="cursor-pointer rounded-[10px] border border-[#555] px-3 py-2 text-[13px] font-semibold leading-5 text-[#444] sm:px-4 sm:text-[14px]">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href={`/courses/${course.id}`}
+                    className="mt-6 flex h-11 items-center justify-center rounded-lg bg-zinc-900 px-4 text-sm font-bold text-white transition-colors hover:bg-sky-700"
+                  >
+                    강좌 자세히 보기
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+      <SiteFooter />
+    </main>
   );
 }
