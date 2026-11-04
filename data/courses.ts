@@ -29,6 +29,7 @@ export const courses: Course[] = [
     detailImages: [
       "/images/courses/RIS_03/detail-01.png",
       "/images/courses/RIS_03/detail-02.png",
+      "/images/courses/RIS_03/detail-03.png",
     ],
     tags: ["교재미포함", "8주 속성과정", "선착순모집"],
   },
