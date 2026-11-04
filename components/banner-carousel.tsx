@@ -1,13 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
 const banners = [
-  { id: "01", label: "메인 배너 이미지 01" },
-  { id: "02", label: "메인 배너 이미지 02" },
-  { id: "03", label: "메인 배너 이미지 03" },
+  {
+    id: "01",
+    src: "/images/banners/Real_Investment_Study_Cohort_03_banner.png",
+    alt: "실전 투자 스터디 3기",
+  },
+  {
+    id: "02",
+    src: "/images/banners/Public_Auction_Investment_banner.png",
+    alt: "공매 투자 실전반",
+  },
+  {
+    id: "03",
+    src: "/images/banners/Youtube_banner.jpg",
+    alt: "부테크 유튜브",
+  },
 ];
 
 export function BannerCarousel() {
@@ -61,8 +74,15 @@ export function BannerCarousel() {
               key={banner.id}
               className="min-w-0 shrink-0 grow-0 basis-[88%] pl-4 sm:basis-[72%] lg:basis-[49%]"
             >
-              <div className="flex aspect-[2.5/1] w-full items-center justify-center border border-dashed border-[#c9cdd3] bg-[#f3f4f5] px-4 text-center text-sm font-medium text-[#8a9099]">
-                {banner.label}
+              <div className="relative aspect-[2.5/1] w-full overflow-hidden">
+                <Image
+                  src={banner.src}
+                  alt={banner.alt}
+                  fill
+                  priority={banner.id === "01"}
+                  sizes="(min-width: 1024px) 49vw, (min-width: 640px) 72vw, 88vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           ))}
