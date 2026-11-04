@@ -50,11 +50,10 @@ export default function Home() {
                 <div className="mt-2 rounded-[15px] border border-[#e9e9e9] bg-white px-5 py-5 sm:px-6 sm:py-6">
                   <p className="min-h-[56px] text-[15px] leading-7 text-[#555] sm:text-[16px]">
                     {course.description}
-                    <span className="block">{course.period}</span>
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {course.tags.map((tag) => (
-                      <span key={tag} className="rounded-[10px] border border-[#555] px-3 py-2 text-[13px] font-semibold leading-5 text-[#444] sm:px-4 sm:text-[14px]">
+                      <span key={tag} className="cursor-pointer rounded-[10px] border border-[#555] px-3 py-2 text-[13px] font-semibold leading-5 text-[#444] sm:px-4 sm:text-[14px]">
                         {tag}
                       </span>
                     ))}
